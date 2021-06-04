@@ -1,26 +1,44 @@
+def gv
+
 pipeline {
     agent any
-    
+    parameters {
+        choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
+        booleanParam(name: 'executeTests', defaultValue: true, description: '')
+    }
     stages {
-        stage('Build') {
+        stage("init") {
             steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+                script {
+                   gv = load "script.groovy" 
                 }
             }
         }
-        stage('Deliver') {
+        stage("build") {
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                script {
+                    gv.buildApp()
+                }
             }
         }
-    }
+        stage("test") {
+            when {
+                expression {
+                    params.executeTests
+                }
+            }
+            steps {
+                script {
+                    gv.testApp()
+                }
+            }
+        }
+        stage("deploy") {
+            steps {
+                script {
+                    gv.deployApp()
+                }
+            }
+        }
+    }   
 }
