@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Document</title>
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+</head>
+<body>   
+    <h2>Nhập tọa độ A và B</h2>
+    <form method="GET", action="/grid">
+        <input type="number" id="xA" min="0" max="20" style="width: 200px;" placeholder="xA"> 
+        <input type="number" id="yA" min="0" max="20" style="width: 200px;"placeholder="yA"><br>
+        <br>        
+        <input type="number" id="xB"  min="0" max="20" style="width: 200px;"placeholder="xB">
+        <input type="number" id="yB"  min="0" max="20" style="width: 200px;"placeholder="yB"><br>
+        <br>
+        <button type="submit" id="submit" onclick="handleSubmit()"> Submit</button>
+    </form>
+    
+    <script src="static/input.js"></script>   
+     
+</body>
+</html>
