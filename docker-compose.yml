@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  web:
+    container_name: pathFindingContainer
+    build:
+        context: .
+        dockerfile: Dockerfile
+    image: path_finding:latest
+    ports:
+      - "9999:5000"

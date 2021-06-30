@@ -17,8 +17,5 @@ function handleSubmit() {
         },
         method: 'POST',
         body: asJson
-    }).then ( response => location.href('/grid'))
+    }).then (response => location.href('/grid'))
 }
-     
-
-
