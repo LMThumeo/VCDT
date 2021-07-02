@@ -1,0 +1,29 @@
+- permission denies when trying to connect daemon:
+    sudo chmod 666 /var/run/docker.sock
+- docker build -t g1-path-finding:latest .
+- docker login
+- docker tag <image_id> <user_name>/<repo_name>:<tag>
+- docker push <user_name>/<repo_name>
+
+- Khởi tạo 1 swarm: 
+    docker swarm init --advertise-addr <MANAGER-IP>
+- Lấy command để thêm 1 node vào swarm: 
+    docker swarm join-token worker
+- docker node ls
+- docker node inspect <NODE-ID>
+    VD: docker node inspect self --pretty
+- Thăng cấp 1 node: 
+    docker node promote <id>
+- Hạ cấp 1 node: 
+    docker node demote <id>
+- Rời khỏi swarm 
+    + trên worker: docker swarm leave
+    + trên manager: docker node rm <id>
+- Triển khai: 
+    + C1: docker service create --name <name_service> --replicas <n> -p <p>:<p> <image>
+    VD: docker service create --name web --replicas 2 -p 9999:5000 leminhthu/g1-path-finding:latest
+    + C2: dùng file yaml
+        docker stack deploy -c <file yaml> <name_stack>
+- Scale:
+    docker service scale <service_name>=<replicas>
+

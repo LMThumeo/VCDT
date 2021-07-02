@@ -1,7 +1,6 @@
 version: "3.9"
 services:
   webpathfinding:
-    build: .
     ports:
       - "9999:5000"
     deploy:
